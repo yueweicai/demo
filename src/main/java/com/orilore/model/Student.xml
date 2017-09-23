@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orilore.mapper.StudentMapper">
+	<resultMap type="Student" id="studentResultMap">
+		<id column="sid" property="sid"/>
+		<result column="name" property="name"/>
+		<result column="age" property="age"/>
+		<result column="sex" property="sex"/>
+		<result column="birthday" property="birthday"/>
+		<result column="cid" property="cid"/>
+		<result column="info" property="info"/>
+		<result column="pic" property="pic"/>
+	</resultMap>
+	<select id="selectOne" parameterType="int" resultType="Student">
+		select * from student where sid=#{sid}
+	</select>
+	<select id="select" resultMap="studentResultMap">
+		select * from student where status=0
+	</select>
+	<insert id="insert" parameterType="Student">
+		insert into student(sid,name,age,sex,birthday,cid,info,pic) values(#{sid},#{name},#{age},#{sex},#{birthday},#{cid},#{info},#{pic})
+	</insert>
+	<delete id="delete" parameterType="int">
+		delete from student where sid=#{sid}
+	</delete>
+	<update id="update" parameterType="Student">
+		update student set sid=#{sid},name=#{name},age=#{age},sex=#{sex},birthday=#{birthday},cid=#{cid},info=#{info},pic=#{pic} where id=#{id}
+	</update>
+</mapper>
