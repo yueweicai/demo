@@ -15,6 +15,7 @@ public class StudentBiz implements IStudentBiz{
 	@Resource
 	private StudentMapper mapper;
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED)
 	public boolean addStudent(Student bean) {
 		try{
 			mapper.insert(bean);
